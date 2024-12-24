@@ -5,7 +5,7 @@ A console-based application developed as part of Data Structures and Algorithms 
 
 ## Description
 
-The **Smart Delivery Navigator** is a console-based application written in **C++**, designed to calculate the shortest delivery route in a city. The project demonstrates the use of **graphs** and other data structures to solve real-world routing problems efficiently. Future plans include transitioning to a **GUI-based application** for enhanced usability and visualization.
+The **Smart Delivery Navigator** is a console-based application written in **C++**, designed to calculate the shortest delivery route in a city. The project demonstrates the use of **graphs** and other data structures to solve real-world routing problems efficiently. It will include transitioning to a **GUI-based application** for enhanced usability and visualization.
 
 ## Features
 
@@ -18,7 +18,7 @@ The **Smart Delivery Navigator** is a console-based application written in **C++
 
 - **Programming Language:** C++
 - **Data Structures:** Graphs, Stacks, Queues, Linked Lists
-- **Platform:** Console-based application (planned future GUI versions).
+- **Platform:** Console-based application(GUI will be added as per the situation).
 
 ## How to Run
 
