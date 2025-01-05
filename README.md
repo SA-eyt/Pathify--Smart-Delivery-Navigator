@@ -1,7 +1,7 @@
 
 # DSA Project: Pathify-Smart Delivery Navigator
 
-A console-based application developed as part of Data Structures and Algorithms (DSA) course project.
+A console-based application developed as part of Data Structures (DS) course project.
 
 ## Description
 
