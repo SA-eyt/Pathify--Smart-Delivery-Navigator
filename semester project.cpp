@@ -16,6 +16,7 @@ class Graph
 {
 public:
     int n;
+    int** adjMatrix;
     Node** adjList;
 
     static const int INF = 1e9;
@@ -23,6 +24,16 @@ public:
     Graph(int nodes)
     {
         n = nodes;
+        adjMatrix = new int*[n];
+        for (int i = 0; i < n; i++)
+        {
+            adjMatrix[i] = new int[n];
+            for (int j = 0; j < n; j++)
+            {
+                adjMatrix[i][j] = 0;
+            }
+        }
+
         adjList = new Node*[n];
         for (int i = 0; i < n; i++)
         {
@@ -32,6 +43,12 @@ public:
 
     ~Graph()
     {
+        for (int i = 0; i < n; i++)
+        {
+            delete[] adjMatrix[i];
+        }
+        delete[] adjMatrix;
+
         for (int i = 0; i < n; i++)
         {
             Node* current = adjList[i];
@@ -47,6 +64,9 @@ public:
 
     void addEdge(int u, int v, int weight)
     {
+        adjMatrix[u][v] = weight;
+        adjMatrix[v][u] = weight;
+
         Node* newNode = new Node(v);
         newNode->next = adjList[u];
         adjList[u] = newNode;
@@ -55,7 +75,7 @@ public:
         adjList[v] = newNode;
     }
 
-    void dijkstra(int destination, int source, string arr[7], float fuelRate, float speed)
+    void dijkstra(int source, int destination, string arr[7], float fuelRate, float speed)
     {
         int dist[n];
         bool visited[n];
@@ -77,9 +97,10 @@ public:
 
             for (int v = 0; v < n; v++)
             {
-                if (!visited[v] && adjList[u][v] && dist[u] != INF && dist[u] + adjList[u][v] < dist[v])
+
+                if (!visited[v] && adjMatrix[u][v] != 0 && dist[u] != INF && dist[u] + adjMatrix[u][v] < dist[v])
                 {
-                    dist[v] = dist[u] + adjList[u][v];
+                    dist[v] = dist[u] + adjMatrix[u][v];
                     parent[v] = u;
                 }
             }
@@ -87,6 +108,7 @@ public:
 
         printShortestPath(destination, source, parent, dist, arr, fuelRate, speed);
     }
+
 
 private:
     int minDistance(int dist[], bool visited[])
@@ -136,7 +158,7 @@ private:
             cout << arr[current] << " -> ";
             current = parent[current];
         }
-        cout << "End" << endl;
+        cout << " End" << endl;
     }
 };
 
@@ -179,8 +201,7 @@ int main()
     string str1, str2;
     int destination, source;
 
-    float fuelRate = 12.0; // Fuel consumption rate (km per liter)
-    float speed = 60.0; // Average speed (km per hour)
+    float fuelRate,speed;
 
     do
     {
@@ -195,7 +216,12 @@ int main()
             getline(cin, str2);
             source = index(arr, str2);
         }
-    } while (destination == 8 || source == 8);
+        cout << "Enter fuel rate in (km/liters) : ";
+        cin >> fuelRate;
+        cout << "Enter average speed (km/h): ";
+        cin >> speed;
+    }
+    while (destination == 8 || source == 8);
 
     G.dijkstra(source, destination, arr, fuelRate, speed);
 
