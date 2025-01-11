@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <limits>
 using namespace std;
 
 // Collective Code
@@ -22,7 +21,7 @@ class Graph
 public:
     int n;
     Node** adjList;
-    static const int INF = numeric_limits<int>::max();
+    static const int INF = 1e9;
 
     Graph(int nodes)
     {
@@ -59,10 +58,9 @@ public:
         newNode->next = adjList[v];
         adjList[v] = newNode;
     }
-//Mehwish code
-    void dijkstra(int source, int destination, string arr[], float fuelRate, float speed)
+ void dijkstra(int source, int destination, string locations[], float currentFuel, float averageSpeed)
     {
-        float dist[n];
+        int dist[n];
         bool visited[n];
         int parent[n];
 
@@ -80,27 +78,23 @@ public:
             int u = minDistance(dist, visited);
             visited[u] = true;
 
-            Node* temp = adjList[u];
-            while (temp)
+            for (int v = 0; v < n; v++)
             {
-                int v = temp->vertex;
-                float weight = temp->weight;
-                if (!visited[v] && dist[u] != INF && dist[u] + weight < dist[v])
+                if (!visited[v] && adjMatrix[u][v] && dist[u] != INF && dist[u] + adjMatrix[u][v] < dist[v])
                 {
-                    dist[v] = dist[u] + weight;
+                    dist[v] = dist[u] + adjMatrix[u][v];
                     parent[v] = u;
                 }
-                temp = temp->next;
             }
         }
-        printShortestPath(source, destination, parent, dist, fuelRate, speed, arr);
+
+        printShortestPath(source, destination, parent, dist, currentFuel, averageSpeed, locations);
     }
 
 private:
-    int minDistance(float dist[], bool visited[])
+    int minDistance(int dist[], bool visited[])
     {
-        float min = INF;
-        int minIndex;
+        int min = INF, minIndex = -1;
 
         for (int v = 0; v < n; v++)
         {
@@ -112,8 +106,8 @@ private:
         }
         return minIndex;
     }
-//Sabeeh Code
-    void printShortestPath(int source, int destination, int parent[], float dist[], float CurrentFuel, float AverageSpeed, string arr[])
+
+    void printShortestPath(int source, int destination, int parent[], int dist[], float fuelRate, float speed, string arr[])
     {
         if (dist[destination] == INF)
         {
@@ -121,104 +115,100 @@ private:
             return;
         }
 
-        float Distance = dist[destination];
-        float FuelConsumption = Distance / CurrentFuel;
-        float RequiredTime = Distance / AverageSpeed;
+        float distance = dist[destination];
+        float fuelConsumption = distance / fuelRate;
+        float requiredTime = distance / speed;
 
-        cout << "Shortest distance from " << arr[source] << " to " << arr[destination] << " is " << Distance << " km." << endl;
-        cout << "Fuel Consumption will be: " << FuelConsumption << " liters." << endl;
-        cout << "Time Required is: " << RequiredTime << " hours." << endl;
+        cout << "Shortest distance from " << arr[source] << " to " << arr[destination] << " is " << distance << " Km." << endl;
+        cout << "Fuel Consumption: " << fuelConsumption << " liters." << endl;
+        cout << "Time Required: " << requiredTime << " hours." << endl;
 
-        if (FuelConsumption > CurrentFuel)
+        if (fuelRate < fuelConsumption)
         {
-            cout << "WARNING: Your current fuel (" << CurrentFuel << " liters) is insufficient to reach the destination. Refuel before starting the trip." << endl;
+            cout << "WARNING: Your current fuel (" << fuelRate << " liters) is insufficient. Refuel before starting the trip." << endl;
         }
         else
         {
             cout << "You have enough fuel to reach the destination." << endl;
         }
-//Mehwish code
-        cout << "Path TO FOLLOW: Start)->(";
-        int path[100]; // Fixed-size array to store the path
-        int pathLength = 0;
 
+        cout << "Path to follow: ";
         int current = destination;
         while (current != -1)
         {
-            path[pathLength++] = current;
+            cout << arr[current];
             current = parent[current];
+            if (current != -1) cout << " -> ";
         }
-
-        for (int i = pathLength - 1; i >= 0; i--)
-        {
-            cout << arr[path[i]];
-            if (i > 0)
-                cout << ")->(";
-        }
-        cout << ")->(End)" << endl;
+        cout << endl;
     }
 };
-//Sabeeh Code
+
 void setting(Graph* G)
 {
-    G->addEdge(0, 4, 7.5);
-    G->addEdge(0, 3, 10.1);
+    G->addEdge(0, 4, 7);
+    G->addEdge(0, 3, 10);
     G->addEdge(0, 7, 13);
-    G->addEdge(0, 5, 2.8);
-    G->addEdge(1, 7, 3.7);
-    G->addEdge(1, 5, 5.3);
-    G->addEdge(1, 6, 4.7);
-    G->addEdge(1, 3, 4.5);
-    G->addEdge(1, 4, 9.9);
-    G->addEdge(2, 7, 4.6);
-    G->addEdge(2, 5, 6.2);
-    G->addEdge(2, 6, 5.6);
-    G->addEdge(2, 3, 5.4);
-    G->addEdge(2, 4, 10.2);
+    G->addEdge(0, 5, 3);
+    G->addEdge(1, 7, 4);
+    G->addEdge(1, 5, 5);
+    G->addEdge(1, 6, 5);
+    G->addEdge(1, 3, 5);
+    G->addEdge(1, 4, 10);
+    G->addEdge(2, 7, 5);
+    G->addEdge(2, 5, 6);
+    G->addEdge(2, 6, 6);
+    G->addEdge(2, 3, 6);
+    G->addEdge(2, 4, 11);
 }
-//Tayyaba code
-int index(string arr[], string strin)
+
+int index(string arr[], string strin, int size)
 {
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < size; i++)
     {
         if (strin == arr[i])
         {
             return i;
         }
     }
-    cout << "Sorry! This place is not available. Try Again" << endl;
-    return 8;
+    return -1;
 }
 
 int main()
 {
     Graph G(8);
     setting(&G);
-    string arr[8] = {"lassani", "zafar restaurant", "fresco", "muhammadi town", "azeem wala", "bilal town", "ali town", "shaheen town"};
-    string str;
+
+    string locations[8] = {"lassani", "zafar restaurant", "fresco", "muhammadi town", "azeem wala", "bilal town", "ali town", "shaheen town"};
+
+    string sourceStr, destStr;
     int source, destination;
-    float CurrentFuel, averageSpeed;
+    float currentFuel, averageSpeed;
 
-    do
+    cout << "Enter current location: ";
+    getline(cin, sourceStr);
+    source = index(locations, sourceStr, 8);
+    if (source == -1)
     {
-        source = destination = 0;
-        cout << "Enter current location: ";
-        getline(cin, str);
-        source = index(arr, str);
-        if (source != 8)
-        {
-            cout << "Enter destination place: ";
-            cin >> str;
-            cin.ignore();
-            destination = index(arr, str);
-            cout << "Enter the current fuel of your delivery bike in liters: ";
-            cin >> CurrentFuel;
-            cout << "Enter the average speed of the bike (km per hour): ";
-            cin >> averageSpeed;
-        }
-    } while (source == 8 || destination == 8);
+        cout << "Invalid location. Exiting program." << endl;
+        return 1;
+    }
 
-    G.dijkstra(source, destination, arr, CurrentFuel, averageSpeed);
+    cout << "Enter destination: ";
+    getline(cin, destStr);
+    destination = index(locations, destStr, 8);
+    if (destination == -1)
+    {
+        cout << "Invalid location. Exiting program." << endl;
+        return 1;
+    }
+
+    cout << "Enter current fuel in liters: ";
+    cin >> currentFuel;
+    cout << "Enter average speed (km/h): ";
+    cin >> averageSpeed;
+
+    G.dijkstra(source, destination, locations, currentFuel, averageSpeed);
 
     return 0;
 }
