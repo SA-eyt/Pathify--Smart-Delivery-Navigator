@@ -1,17 +1,13 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
-// Collective Code
 struct Node
 {
-    int vertex, duration;
-    float weight;
+    int data;
     Node* next;
-    Node(int v, float w)
+    Node(int val)
     {
-        vertex = v;
-        weight = w;
+        data = val;
         next = NULL;
     }
 };
@@ -21,6 +17,7 @@ class Graph
 public:
     int n;
     Node** adjList;
+
     static const int INF = 1e9;
 
     Graph(int nodes)
@@ -48,17 +45,17 @@ public:
         delete[] adjList;
     }
 
-    void addEdge(int u, int v, float weight)
+    void addEdge(int u, int v, int weight)
     {
-        Node* newNode = new Node(v, weight);
+        Node* newNode = new Node(v);
         newNode->next = adjList[u];
         adjList[u] = newNode;
-
-        newNode = new Node(u, weight);
+        newNode = new Node(u);
         newNode->next = adjList[v];
         adjList[v] = newNode;
     }
- void dijkstra(int source, int destination, string locations[], float currentFuel, float averageSpeed)
+
+    void dijkstra(int destination, int source, string arr[7], float fuelRate, float speed)
     {
         int dist[n];
         bool visited[n];
@@ -71,7 +68,7 @@ public:
             parent[i] = -1;
         }
 
-        dist[source] = 0;
+        dist[destination] = 0;
 
         for (int count = 0; count < n - 1; count++)
         {
@@ -80,21 +77,21 @@ public:
 
             for (int v = 0; v < n; v++)
             {
-                if (!visited[v] && adjMatrix[u][v] && dist[u] != INF && dist[u] + adjMatrix[u][v] < dist[v])
+                if (!visited[v] && adjList[u][v] && dist[u] != INF && dist[u] + adjList[u][v] < dist[v])
                 {
-                    dist[v] = dist[u] + adjMatrix[u][v];
+                    dist[v] = dist[u] + adjList[u][v];
                     parent[v] = u;
                 }
             }
         }
 
-        printShortestPath(source, destination, parent, dist, currentFuel, averageSpeed, locations);
+        printShortestPath(destination, source, parent, dist, arr, fuelRate, speed);
     }
 
 private:
     int minDistance(int dist[], bool visited[])
     {
-        int min = INF, minIndex = -1;
+        int min = INF, minIndex;
 
         for (int v = 0; v < n; v++)
         {
@@ -107,15 +104,15 @@ private:
         return minIndex;
     }
 
-    void printShortestPath(int source, int destination, int parent[], int dist[], float fuelRate, float speed, string arr[])
+    void printShortestPath(int destination, int source, int parent[], int dist[], string arr[7], float fuelRate, float speed)
     {
-        if (dist[destination] == INF)
+        if (dist[source] == INF)
         {
-            cout << "No path exists from " << arr[source] << " to " << arr[destination] << endl;
+            cout << "No path exists from " << arr[destination] << " to " << arr[source] << endl;
             return;
         }
 
-        float distance = dist[destination];
+        float distance = dist[source];
         float fuelConsumption = distance / fuelRate;
         float requiredTime = distance / speed;
 
@@ -132,83 +129,75 @@ private:
             cout << "You have enough fuel to reach the destination." << endl;
         }
 
-        cout << "Path to follow: ";
-        int current = destination;
+        cout << "Path TO FOLLOW: Start -> ";
+        int current = source;
         while (current != -1)
         {
-            cout << arr[current];
+            cout << arr[current] << " -> ";
             current = parent[current];
-            if (current != -1) cout << " -> ";
         }
-        cout << endl;
+        cout << "End" << endl;
     }
 };
 
 void setting(Graph* G)
 {
-    G->addEdge(0, 4, 7);
-    G->addEdge(0, 3, 10);
+    G->addEdge(0, 4, 7.5);
+    G->addEdge(0, 3, 10.1);
     G->addEdge(0, 7, 13);
-    G->addEdge(0, 5, 3);
-    G->addEdge(1, 7, 4);
-    G->addEdge(1, 5, 5);
-    G->addEdge(1, 6, 5);
-    G->addEdge(1, 3, 5);
-    G->addEdge(1, 4, 10);
-    G->addEdge(2, 7, 5);
-    G->addEdge(2, 5, 6);
-    G->addEdge(2, 6, 6);
-    G->addEdge(2, 3, 6);
-    G->addEdge(2, 4, 11);
+    G->addEdge(0, 5, 2.8);
+    G->addEdge(1, 7, 3.7);
+    G->addEdge(1, 5, 5.3);
+    G->addEdge(1, 6, 4.7);
+    G->addEdge(1, 3, 4.5);
+    G->addEdge(1, 4, 9.9);
+    G->addEdge(2, 7, 4.6);
+    G->addEdge(2, 5, 6.2);
+    G->addEdge(2, 6, 5.6);
+    G->addEdge(2, 3, 5.4);
+    G->addEdge(2, 4, 10.2);
 }
 
-int index(string arr[], string strin, int size)
+int index(string arr[8], string strin)
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < 8; i++)
     {
         if (strin == arr[i])
         {
             return i;
         }
     }
-    return -1;
+    cout << "Sorry! This place is not available. Try Again." << endl;
+    return 8;
 }
 
 int main()
 {
     Graph G(8);
     setting(&G);
+    string arr[8] = {"lassani", "zafar restaurant", "fresco", "muhammadi town", "azeem wala", "bilal town", "ali town", "shaheen town"};
+    string str1, str2;
+    int destination, source;
 
-    string locations[8] = {"lassani", "zafar restaurant", "fresco", "muhammadi town", "azeem wala", "bilal town", "ali town", "shaheen town"};
+    float fuelRate = 12.0; // Fuel consumption rate (km per liter)
+    float speed = 60.0; // Average speed (km per hour)
 
-    string sourceStr, destStr;
-    int source, destination;
-    float currentFuel, averageSpeed;
-
-    cout << "Enter current location: ";
-    getline(cin, sourceStr);
-    source = index(locations, sourceStr, 8);
-    if (source == -1)
+    do
     {
-        cout << "Invalid location. Exiting program." << endl;
-        return 1;
-    }
+        destination = 0;
+        source = 0;
+        cout << "Enter current location : ";
+        getline(cin, str1);
+        destination = index(arr, str1);
+        if (destination != 8)
+        {
+            cout << "Enter source place: ";
+            getline(cin, str2);
+            source = index(arr, str2);
+        }
+    } while (destination == 8 || source == 8);
 
-    cout << "Enter destination: ";
-    getline(cin, destStr);
-    destination = index(locations, destStr, 8);
-    if (destination == -1)
-    {
-        cout << "Invalid location. Exiting program." << endl;
-        return 1;
-    }
-
-    cout << "Enter current fuel in liters: ";
-    cin >> currentFuel;
-    cout << "Enter average speed (km/h): ";
-    cin >> averageSpeed;
-
-    G.dijkstra(source, destination, locations, currentFuel, averageSpeed);
+    G.dijkstra(source, destination, arr, fuelRate, speed);
 
     return 0;
 }
