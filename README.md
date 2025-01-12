@@ -17,7 +17,7 @@ The **Smart Delivery Navigator** is a console-based application written in **C++
 ## Technologies Used
 
 - **Programming Language:** C++
-- **Data Structures:** Graphs, Stacks, Queues, Linked Lists
+- **Data Structures:** Graphs,Arrays and Linked Lists
 - **Platform:** Console-based application(GUI will be added as per the situation).
 
 ## How to Run
