@@ -1,6 +1,8 @@
 #include <iostream>
+#include <algorithm>
+#include <string>
 using namespace std;
-
+//Collective Code
 struct Node
 {
     int data;
@@ -74,7 +76,7 @@ public:
         newNode->next = adjList[v];
         adjList[v] = newNode;
     }
-
+//Mehwish code
     void dijkstra(int source, int destination, string arr[7], float fuelRate, float speed)
     {
         int dist[n];
@@ -133,7 +135,7 @@ private:
             cout << "No path exists from " << arr[destination] << " to " << arr[source] << endl;
             return;
         }
-
+//Sabeeh code
         float distance = dist[source];
         float fuelConsumption = distance / fuelRate;
         float requiredTime = distance / speed;
@@ -161,7 +163,7 @@ private:
         cout << " End" << endl;
     }
 };
-
+//Mehwish code
 void setting(Graph* G)
 {
     G->addEdge(0, 4, 7.5);
@@ -179,7 +181,7 @@ void setting(Graph* G)
     G->addEdge(2, 3, 5.4);
     G->addEdge(2, 4, 10.2);
 }
-
+//Tayyaba code
 int index(string arr[8], string strin)
 {
     for (int i = 0; i < 8; i++)
@@ -192,7 +194,15 @@ int index(string arr[8], string strin)
     cout << "Sorry! This place is not available. Try Again." << endl;
     return 8;
 }
+string sanitizeInput(std::string input) {
+    // Convert to lowercase
+    transform(input.begin(), input.end(), input.begin(), ::tolower);
 
+    // Remove all spaces
+    input.erase(remove(input.begin(), input.end(), ' '), input.end());
+
+    return input;
+}
 int main()
 {
     Graph G(8);
@@ -208,18 +218,21 @@ int main()
         destination = 0;
         source = 0;
         cout << "Enter current location : ";
-        getline(cin, str1);
+        getline(cin, str1);str1 = sanitizeInput(str1);
         destination = index(arr, str1);
         if (destination != 8)
         {
             cout << "Enter source place: ";
             getline(cin, str2);
+            str2 = sanitizeInput(str2);
             source = index(arr, str2);
+            cout << "Enter fuel rate in (km/liters) : ";
+            cin >> fuelRate;
+            cout << "Enter average speed (km/h): ";
+            cin >> speed;
+            cout<<endl;
         }
-        cout << "Enter fuel rate in (km/liters) : ";
-        cin >> fuelRate;
-        cout << "Enter average speed (km/h): ";
-        cin >> speed;
+
     }
     while (destination == 8 || source == 8);
 
