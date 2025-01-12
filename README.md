@@ -1,42 +1,23 @@
 # Pathify-Smart Delivery Navigator
 
-## Overview
-The code implements a navigation system using C++ with the FMX framework, primarily focused on pathfinding between different locations using Dijkstra's algorithm.
-
-## Key Components
+## Description
+The **Smart Delivery Navigator** is a GUI-based application developed using **RAD Studio** and written in **C++**. This project demonstrates the efficient use of graphs and algorithms, such as **Dijkstra's Algorithm**, to solve real-world routing problems. It calculates the shortest delivery route in a city while providing detailed information on distance, travel time, and fuel consumption. By integrating a user-friendly GUI, the application ensures an interactive and seamless user experience.
 
 ### Data Structures
 - **Graph Implementation:** Utilizes both adjacency matrix and adjacency list.
 - **Custom Node Struct:** Represents linked list elements.
 - **Fixed-size Arrays:** Stores location names and distances.
 
-### Core Functionality
-
-#### Path Finding
-- Implements **Dijkstra's Algorithm** for shortest path calculation.
-- Supports **weighted, undirected edges**.
-- Includes calculations for:
-  - Distance
-  - Fuel consumption
-  - Travel time
-
-#### GUI Integration
-- Input validation for source and destination.
-- Real-time feedback through labels and messages.
-- Clear functionality for resetting inputs.
-
-### Notable Features
+## Features
 - **Fuel Consumption Calculation:** Based on distance and fuel rate.
 - **Travel Time Estimation:** Uses user-provided speed input.
 - **Warning System:** Alerts for insufficient fuel.
 - **Case-insensitive Matching:** Matches locations without regard to case.
 - **Input Sanitization:** Ensures reliability and consistency.
 
-## Technical Specifications
-- **Language:** C++ with FMX framework.
-- **Graph Size:** Fixed at 8 nodes.
-- **Pre-defined Locations:** 8 destinations.
-- **Edge Properties:** Bidirectional with weights.
+## Technologies Used
+- **Programming Language:** C++
+- **Framework:** FMX (FireMonkey) in RAD Studio
 
 ## Limitations
 - Fixed graph size of 8 nodes.
@@ -53,22 +34,6 @@ The code implements a navigation system using C++ with the FMX framework, primar
 ## Performance Considerations
 - **Time Complexity:** O(V^2) for Dijkstra's implementation.
 - **Space Complexity:** O(V^2) for adjacency matrix storage.
-
-# DSA Project: Pathify-Smart Delivery Navigator
-
-## Description
-The **Smart Delivery Navigator** is a GUI-based application developed using **RAD Studio** and written in **C++**. It is designed to calculate the shortest delivery route in a city. The project demonstrates the use of **graphs** and other data structures to solve real-world routing problems efficiently.
-
-## Features
-- Calculate the shortest delivery path using **Dijkstra’s Algorithm**.
-- Display detailed information, including distance, estimated time, and fuel requirements.
-- Interactive input system for managing delivery locations.
-- Efficiently handles multiple delivery points with optimized algorithms.
-
-## Technologies Used
-- **Programming Language:** C++
-- **Data Structures:** Graphs, Arrays, and Linked Lists
-- **Platform:** GUI-based application developed using **RAD Studio**.
 
 ## How to Run
 
@@ -89,3 +54,8 @@ The **Smart Delivery Navigator** is a GUI-based application developed using **RA
 4. Build and run the application within the IDE.
 
 5. Follow the on-screen instructions to interact with the navigator.
+
+---
+This project highlights the practical application of data structures and algorithms in developing smart navigation systems, demonstrating a blend of technical efficiency and user-centric design.
+
+
