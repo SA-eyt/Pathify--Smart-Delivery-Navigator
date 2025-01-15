@@ -1,0 +1,324 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 725
+  ClientWidth = 1339
+  Fill.Kind = Gradient
+  Fill.Gradient.Points = <
+    item
+      Color = claBlack
+      Offset = -0.009316770359873772
+    end
+    item
+      Color = xFF656565
+      Offset = 0.000000000000000000
+    end
+    item
+      Color = claWhite
+      Offset = 1.000000000000000000
+    end>
+  Fill.Gradient.Style = Radial
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object curren: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 143.000000000000000000
+    Position.Y = 230.000000000000000000
+    Size.Width = 185.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 16.000000000000000000
+    Text = 'Your Current Location : '
+    TabOrder = 7
+    object fue: TLabel
+      StyledSettings = [Style, FontColor]
+      Position.Y = 160.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Roboto'
+      TextSettings.Font.Size = 16.000000000000000000
+      Text = 'Fuel Rate (Km/liters) : '
+      TabOrder = 1
+      object spee: TLabel
+        StyledSettings = [FontColor]
+        Position.Y = 88.000000000000000000
+        Size.Width = 233.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Roboto'
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Average speed (km/h) : '
+        TabOrder = 1
+      end
+    end
+  end
+  object box: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 8
+    TextSettings.Font.Size = 16.000000000000000000
+    Position.X = 369.000000000000000000
+    Position.Y = 220.000000000000000000
+    Size.Width = 216.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    StyledSettings = [Family, Style, FontColor]
+    object boxxx: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      Position.Y = 176.000000000000000000
+      Size.Width = 216.000000000000000000
+      Size.Height = 43.000000000000000000
+      Size.PlatformDefault = False
+      object boxxxx: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 0
+        Position.Y = 81.000000000000000000
+        Size.Width = 217.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+  end
+  object destinatio: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 143.000000000000000000
+    Position.Y = 305.000000000000000000
+    Size.Width = 225.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 16.000000000000000000
+    Text = 'Your Destination Location : '
+    TabOrder = 9
+  end
+  object boxx: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 10
+    TextSettings.Font.Size = 16.000000000000000000
+    Position.X = 369.000000000000000000
+    Position.Y = 305.000000000000000000
+    Size.Width = 216.000000000000000000
+    Size.Height = 44.000000000000000000
+    Size.PlatformDefault = False
+    StyledSettings = [Family, Style, FontColor]
+  end
+  object Button1: TButton
+    StyledSettings = [Family, Size]
+    Position.X = 480.000000000000000000
+    Position.Y = 552.000000000000000000
+    Size.Width = 105.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 11
+    Text = 'CALCULATE'
+    TextSettings.Trimming = None
+    OnClick = Button1Click
+  end
+  object pathify: TLabel
+    StyledSettings = []
+    Position.X = 574.000000000000000000
+    Position.Y = 41.000000000000000000
+    Size.Width = 346.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Cooper'
+    TextSettings.Font.Size = 48.000000000000000000
+    TextSettings.Font.StyleExt = {00090000000200000004000000}
+    TextSettings.FontColor = claFirebrick
+    TextSettings.WordWrap = False
+    Text = 'Pathify'
+    TabOrder = 12
+  end
+  object slogen: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 520.000000000000000000
+    Position.Y = 121.000000000000000000
+    Size.Width = 450.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 20.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000200000004000000}
+    Text = 'Where travelling meets luxury.'
+    TabOrder = 13
+  end
+  object Label1: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 739.000000000000000000
+    Position.Y = 221.000000000000000000
+    Size.Width = 159.000000000000000000
+    Size.Height = 38.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'Current Location : '
+    TabOrder = 0
+  end
+  object Label2: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 890.000000000000000000
+    Position.Y = 229.000000000000000000
+    Size.Width = 335.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'Label2'
+    TabOrder = 1
+    object Label7: TLabel
+      StyledSettings = [Style, FontColor]
+      Position.X = -151.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 208.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Roboto'
+      TextSettings.Font.Size = 18.000000000000000000
+      Text = 'Destination Location : '
+      TabOrder = 4
+    end
+  end
+  object Label3: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 928.000000000000000000
+    Position.Y = 277.000000000000000000
+    Size.Width = 329.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'Label3'
+    TabOrder = 2
+  end
+  object Label5: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 739.000000000000000000
+    Position.Y = 382.000000000000000000
+    Size.Width = 218.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'Fuel Consumption (liters) : '
+    TabOrder = 3
+  end
+  object Label6: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 739.000000000000000000
+    Position.Y = 332.000000000000000000
+    Size.Width = 231.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'Shortest Distance (Km) : '
+    TabOrder = 4
+  end
+  object Label9: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 739.000000000000000000
+    Position.Y = 484.000000000000000000
+    Size.Width = 142.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'Path : Start -> '
+    TabOrder = 5
+  end
+  object Label10: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 739.000000000000000000
+    Position.Y = 435.000000000000000000
+    Size.Width = 193.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'Time Required (min) : '
+    TabOrder = 6
+  end
+  object f: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 965.000000000000000000
+    Position.Y = 382.000000000000000000
+    Size.Width = 308.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'f'
+    TabOrder = 14
+  end
+  object t: TLabel
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 940.000000000000000000
+    Position.Y = 435.000000000000000000
+    Size.Width = 333.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 't'
+    TabOrder = 15
+  end
+  object d: TLabel
+    StyledSettings = [Style, FontColor]
+    Position.X = 952.000000000000000000
+    Position.Y = 332.000000000000000000
+    Size.Width = 313.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Roboto'
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'd'
+    TabOrder = 16
+  end
+  object p: TLabel
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 856.000000000000000000
+    Position.Y = 480.000000000000000000
+    Size.Width = 756.000000000000000000
+    Size.Height = 23.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    Text = 'p'
+    TabOrder = 17
+  end
+  object Label4: TLabel
+    StyledSettings = [Family]
+    Position.X = 739.000000000000000000
+    Position.Y = 533.000000000000000000
+    Size.Width = 441.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00020000000000000004000000}
+    TextSettings.FontColor = claRed
+    Text = 'Label4'
+    TabOrder = 18
+  end
+  object Button2: TButton
+    Position.X = 369.000000000000000000
+    Position.Y = 552.000000000000000000
+    Size.Width = 103.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 19
+    Text = 'RESET'
+    TextSettings.Trimming = None
+    OnClick = Button2Click
+  end
+  object ScrollBar1: TScrollBar
+    SmallChange = 0.000000000000000000
+    Orientation = Horizontal
+    Position.Y = 707.000000000000000000
+    Size.Width = 1321.000000000000000000
+    Size.Height = 18.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 20
+  end
+end
